@@ -11,6 +11,6 @@ public class RobotContainer {
     private final XboxController m_joystick = new XboxController(RobotMap.DRIVER_CONTROLLER);
 
     public RobotContainer(){
-        m_drivetrain.setDefaultCommand(new DriveTrainMove(m_drivetrain, () -> -m_joystick.getRawAxis(RobotMap.JOYSTICK.LEFT_STICK_Y), () -> m_joystick.getRawAxis(RobotMap.JOYSTICK.RIGHT_STICK_X)));
+        m_drivetrain.setDefaultCommand(new DriveTrainMove(m_drivetrain, () -> m_joystick.getRawAxis(RobotMap.JOYSTICK.LEFT_STICK_Y), () -> m_joystick.getRawAxis(RobotMap.JOYSTICK.RIGHT_STICK_X)));
     }
 }

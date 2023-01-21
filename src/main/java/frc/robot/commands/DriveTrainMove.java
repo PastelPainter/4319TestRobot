@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
@@ -20,11 +21,16 @@ public class DriveTrainMove extends CommandBase {
     public void execute() {
         double realTimeSpeed = speedFunction.get();
         double realTimeTurn = turnFunction.get();
+    
+       SmartDashboard.putNumber("real time speed", realTimeSpeed);
+       SmartDashboard.putNumber("real time turn", realTimeTurn);
 
-        double left = realTimeSpeed + realTimeTurn;
-        double right = realTimeSpeed - realTimeTurn;
- 
-        drivetrain.setMotors(left, right);
+        if (Math.abs(realTimeSpeed)< 0.2 && Math.abs(realTimeTurn)< 0.2) {
+            drivetrain.setMotors(0, 0);
+        } else { 
+            double left = realTimeSpeed + realTimeTurn;
+            double right = realTimeSpeed - realTimeTurn;
+            drivetrain.setMotors(left, right);
+        }
     }
-
 }
